@@ -24,7 +24,7 @@ public class Main {
     public static void main(String[] args) {
        // FileHandler.fileSeacher("algoISO9000", "C:\\test", "C:\\dest");
         // TODO code application logic here
-        File dir = new  File("C:\\test.xls");
+        //File dir = new  File("C:\\test.xls");
        /* FileCopy.EXCELPATH = "C:\\test.xls";
         FileCopy.CHECKBOX = false;
         FileCopy.PREFIX = "o";
@@ -40,23 +40,18 @@ public class Main {
         //System.out.println(dir.getAbsolutePath());
        //FileInputStream fileInputStream = FileController.FileHandler.initExcelFile(dir);
         //dir.get
-        List<String> fotoList = excelReader.ExcelReader.contentReading(dir.getAbsolutePath());
+        /*List<String> fotoList = excelReader.ExcelReader.contentReading(dir.getAbsolutePath());
         for (Iterator<String> it = fotoList.iterator(); it.hasNext();) {
             String string = it.next();
             System.out.println(string);
-        }
+        }*/
         
         //FileHandler.fileSeacher(fotoList, null, null);
+        String oriFile="C:\\Documents and Settings\\YangColor\\My Documents\\Downloads";
+        String destPath = "C:\\Documents and Settings\\YangColor\\My Documents\\traceviewer";
+        String fileName = "disney3.jpg";
         
-    }
-    
-    public void testFor(){
-    	List<String> miString = new ArrayList<String>();
-    	miString.add("AA");
-    	miString.add("BB");
-    	for (String string : miString) {
-			
-		}
-    }
-
+        FileHandler.fileSeacher(fileName, oriFile, destPath);
+        
+    }    
 }

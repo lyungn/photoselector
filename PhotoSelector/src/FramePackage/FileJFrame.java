@@ -287,8 +287,8 @@ private void jCheckRellenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN
         this.setCheckBox(false);
         txtPrefijo.setEditable(false);
         txtSubfijo.setEditable(false);
-        txtPrefijo.setText(null);
-        txtSubfijo.setText(null);
+        txtPrefijo.setText("");
+        txtSubfijo.setText("");
     }    
 }//GEN-LAST:event_jCheckRellenoActionPerformed
 

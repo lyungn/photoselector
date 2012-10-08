@@ -36,13 +36,12 @@ public class FileManageThread extends Thread {
         jPro.setMaxValue(maxValue);
         if (CHECKBOX) {
             //System.out.println("llamo a relleno");
-            for (Iterator<String> it = fotoList.iterator(); it.hasNext();) {
-                String string = PREFIX + it.next() + SUBFIX;
-                resultString.add(FileHandler.fileSeacher(string, ORIGENPATH, DESTPATH));
+            for (String string : fotoList) {
+                resultString.add(FileHandler.fileSeacher(PREFIX + string + SUBFIX, ORIGENPATH, DESTPATH));
             }
+            
         } else {
-            for (Iterator<String> it = fotoList.iterator(); it.hasNext();) {
-                String string = it.next();
+            for (String string : fotoList) {
                 resultString.add(FileHandler.fileSeacher(string, ORIGENPATH, DESTPATH));
             }
         }
