@@ -105,7 +105,7 @@ public class FileHandler {
                             
                         } else {
 
-                            File newName = new File(filePath + "\\" + tempName + "x1F" + ".jpg");
+                            File newName = new File(filePath + "\\" + tempName + "x2F" + ".jpg");
                             file.renameTo(newName);
                             //fileToRename.delete();
                             return false;
