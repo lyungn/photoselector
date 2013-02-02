@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package FileController;
+package fileFacade;
 
 import java.io.File;
 import java.io.FilenameFilter;
