@@ -5,7 +5,7 @@
 
 package photoselector;
 import excelReader.*;
-import FileController.*;
+import fileFacade.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class Main {
         String destPath = "C:\\Documents and Settings\\YangColor\\My Documents\\traceviewer";
         String fileName = "disney3.jpg";
         
-        FileHandler.fileSeacher(fileName, oriFile, destPath);
+      //  FileHandler.fileSeacher(fileName, oriFile, destPath);
         
     }    
 }

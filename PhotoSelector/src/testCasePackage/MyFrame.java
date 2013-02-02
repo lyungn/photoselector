@@ -1,4 +1,4 @@
-package TestPackage;
+package testCasePackage;
 
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;

@@ -1,28 +1,28 @@
-package FileController;
+package fileFacade;
 
+import FramePackage.ProgressBarFrame;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import FramePackage.ProgressBarFrame;
-
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 /**
- * 
  * @author Yung
  */
 public class FileHandler {
+    private String searchFileName;
+    private String origenFolderPath;
+    private String destinationFolderPath;
 
-    private static void fileCopyer(String fileasked, String destFolderPath,
-            String fName) {
+    private void fileCopyer(String fileasked, String fName) {
 
         String origenStringFile = fileasked;
-        String destStringFile = destFolderPath + "\\" + fName;
+        String destStringFile = this.destinationFolderPath + "\\" + fName;
         File orignFile = new File(origenStringFile);
         File destFile = new File(destStringFile);
         FileInputStream archivoSelected = null;
@@ -35,36 +35,33 @@ public class FileHandler {
                 int numBytesRead;
                 while ((numBytesRead = archivoSelected.read(byteBuf)) != -1) {
                     archivoSalida.write(byteBuf, 0, numBytesRead);
-
                 }
                 archivoSalida.close();
                 archivoSelected.close();
-
-            } else {
-                
             }
-
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
-
-    public static String fileSeacher(String stringFile, String originFolderPath, String destFolderPath) {
+    
+    
+    //String stringFile, String originFolderPath, String destFolderPath
+    public String fileSeacher() {
 
         String returnString = "";
-        File dirS = new File(originFolderPath);
-        File[] files = dirS.listFiles(new MyFileFilter(stringFile));
+        File dirS = new File(this.origenFolderPath);
+        File[] files = dirS.listFiles(new MyFileFilter(this.searchFileName));
         if (files.length == 0) {
-            returnString = stringFile;
+            returnString = this.searchFileName;
 
         } else {
             for (File f : files) {
-                /*ProgressBarFrame jPro = ProgressBarFrame.getInstance();
+                ProgressBarFrame jPro = ProgressBarFrame.getInstance();
                 jPro.setFileName(f.getName());
-                jPro.setActualValue(1);*/
-                fileCopyer(f.getAbsolutePath(), destFolderPath, f.getName());
+                jPro.setActualValue(1);
+                fileCopyer(f.getAbsolutePath(), f.getName());
             }
         }
         return returnString;
@@ -113,12 +110,44 @@ public class FileHandler {
                     }
                 }
                 return false;
-
-
             }
         } catch (Exception e) {
             System.out.println(e.getCause());
         }
         return false;
     }
+    
+    public String getDestinationFolderPath() {
+        return destinationFolderPath;
+    }
+
+    public void setDestinationFolderPath(String destinationFolderPath) {
+        this.destinationFolderPath = destinationFolderPath;
+    }
+
+    public String getOrigenFolderPath() {
+        return origenFolderPath;
+    }
+
+    public void setOrigenFolderPath(String origenFolderPath) {
+        this.origenFolderPath = origenFolderPath;
+    }
+
+    public String getSearchFileName() {
+        return searchFileName;
+    }
+
+    public void setSearchFileName(String searchFileName) {
+        this.searchFileName = searchFileName;
+    }
+
+    public FileHandler(String searchFileName, String origenFolderPath, String destinationFolderPath) {
+        this.searchFileName = searchFileName;
+        this.origenFolderPath = origenFolderPath;
+        this.destinationFolderPath = destinationFolderPath;
+    }
+
+    public FileHandler() {
+    }
+    
 }

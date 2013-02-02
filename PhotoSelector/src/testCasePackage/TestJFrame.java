@@ -8,7 +8,7 @@
  *
  * Created on 07/11/2011, 00:47:27
  */
-package TestPackage;
+package testCasePackage;
 
 import java.io.File;
 import java.io.FileInputStream;
