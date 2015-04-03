@@ -17,6 +17,7 @@ import java.util.StringTokenizer;
 public class FileManThreadRun implements Runnable{
     public List<String> archNoEnList;
     public PhotoLabFile photoLote;
+    private final Thread fileThread;
     
     public void run() {
        if(photoLote.getExcelPath().length()> 1){
@@ -47,9 +48,14 @@ public class FileManThreadRun implements Runnable{
         jPro.dispose();
     }
 
+      public void start() {
+        fileThread.start();
+    }
+      
     public FileManThreadRun() {
         this.archNoEnList = new ArrayList<String>();
         this.photoLote = new PhotoLabFile();
+        this.fileThread = new Thread(this);
     }
     
     public void stringTokeniser(String uriString){

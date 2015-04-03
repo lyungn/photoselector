@@ -349,7 +349,7 @@ private void btnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         jPro.setActualValue(0);
         
         jPro.setMaxValue(100);
-        fileManThreadRun.run();
+        fileManThreadRun.start();
         
         
         setMissingString(fileManThreadRun.archNoEnList);

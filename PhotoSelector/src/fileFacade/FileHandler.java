@@ -22,7 +22,8 @@ public class FileHandler {
     private void fileCopyer(String fileasked, String fName) {
 
         String origenStringFile = fileasked;
-        String destStringFile = this.destinationFolderPath + "\\" + fName;
+        //String destStringFile = this.destinationFolderPath + "\\" + fName;
+        String destStringFile = this.destinationFolderPath + File.separator + fName;
         File orignFile = new File(origenStringFile);
         File destFile = new File(destStringFile);
         FileInputStream archivoSelected = null;
@@ -77,8 +78,8 @@ public class FileHandler {
         }
         try {
 
-            String ss = fileToRename.getParent();
-            File filePath = new File(ss);
+            String existFile = fileToRename.getParent();
+            File filePath = new File(existFile);
             File[] files = filePath.listFiles(new MyFileFilter(tempName));
             if (files.length == 0) {
                 return true;
@@ -95,14 +96,14 @@ public class FileHandler {
                             String intRepeat = modifyFile.substring(1,posF);
                             int cantToIncrease = Integer.parseInt(intRepeat);
                             cantToIncrease = cantToIncrease +1;
-                            String newmodifle = ss + "\\" + tempName + "x" + String.valueOf(cantToIncrease) + "F" + ".jpg";
+                            String newmodifle = existFile + File.separator + tempName + "x" + String.valueOf(cantToIncrease) + "F" + ".jpg";
                             File newName = new File(newmodifle);
                             file.renameTo(newName);
                             return false;
                             
                         } else {
 
-                            File newName = new File(filePath + "\\" + tempName + "x2F" + ".jpg");
+                            File newName = new File(filePath + File.separator + tempName + "x2F" + ".jpg");
                             file.renameTo(newName);
                             //fileToRename.delete();
                             return false;
