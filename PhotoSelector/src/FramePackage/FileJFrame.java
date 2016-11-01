@@ -11,6 +11,7 @@
 package FramePackage;
 
 import fileFacade.FileManThreadRun;
+import static java.lang.Thread.sleep;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -314,22 +315,9 @@ private void jCheckRellenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 }//GEN-LAST:event_jCheckRellenoActionPerformed
 
 private void btnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCopyActionPerformed
-// TODO add your handling code here:
-    modeloArchivo.clear();
+
+    modeloArchivo = new DefaultListModel();
  
-    /*String excelPath = txtExcelPath.getText();
-    String origenPath = txtOrigenFolder.getText();
-    String destPath = txtDestFolder.getText();
-    String prefix = txtPrefijo.getText();
-    String surfix = txtSubfijo.getText();
-    Boolean acheckBox = this.getCheckBox();
-    ProgressBarFrame jPro = ProgressBarFrame.getInstance();	
-	jPro.setVisible(true);
-	jPro.setActualValue(0);
-	jPro.setMaxValue(100);
-    FileManageThread fileManager = new FileManageThread();
-    fileManager.fileDispacher(excelPath, origenPath, destPath, prefix, surfix, acheckBox);
-    fileManager.start();*/
     try{
         FileManThreadRun fileManThreadRun = new FileManThreadRun();
         if(checkBoxUri.isSelected()){
@@ -350,9 +338,13 @@ private void btnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         
         jPro.setMaxValue(100);
         fileManThreadRun.start();
-        
-        
+        jPro.setFileThread(true);
+        while (jPro.getFileThread()) {            
+            sleep(2);
+        }
+
         setMissingString(fileManThreadRun.archNoEnList);
+        
     }catch(Exception e){
         e.getMessage();
     }
@@ -417,18 +409,9 @@ private void btnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
         fileNoMathcList.setModel(modeloArchivo);
     }
-    /*public Boolean checkBox;
 
-    public Boolean getCheckBox() {
-        return checkBox;
-    }
-
-    public final void setCheckBox(Boolean checkBox) {
-        this.checkBox = checkBox;
-    }*/
     /* variable*/
-    public static DefaultListModel modeloArchivo = new DefaultListModel();
-    //public static List<String> missingString = new ArrayList<String>();        
+    public static DefaultListModel modeloArchivo;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCopy;
     private javax.swing.JButton btnDest;

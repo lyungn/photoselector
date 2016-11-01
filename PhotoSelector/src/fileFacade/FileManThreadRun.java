@@ -20,35 +20,39 @@ public class FileManThreadRun implements Runnable{
     private final Thread fileThread;
     
     public void run() {
-       if(photoLote.getExcelPath().length()> 1){
-           photoLote.setExcelFilelist( excelReader.ExcelReader.contentReading(photoLote.getExcelPath()));
-       }
+        if(photoLote.getExcelPath().length()> 1){
+            photoLote.setExcelFilelist( excelReader.ExcelReader.contentReading(photoLote.getExcelPath()));
+        }
        
-        
         ProgressBarFrame jPro = ProgressBarFrame.getInstance();
         jPro.setVisible(true);
         //jPro.setActualValue(0);
         jPro.setMaxValue(photoLote.getExcelFilelist().size());
+        String tmplist;
         if (photoLote.getCheckBox()) {
             //System.out.println("llamo a relleno");
             for (String string : photoLote.getExcelFilelist()) {
                 FileHandler fileHandler = new FileHandler(photoLote.getPrefix() + string + photoLote.getSubfix(), photoLote.getOrigenPath(), photoLote.getDestPath());
-                
-                archNoEnList.add(fileHandler.fileSeacher());
+                tmplist = fileHandler.fileSeacher();
+    
+                archNoEnList.add(tmplist);
             }
             
         } else {
             for (String string : photoLote.getExcelFilelist()) {
                 FileHandler fileHandler = new FileHandler(string, photoLote.getOrigenPath(), photoLote.getDestPath());
-                archNoEnList.add(fileHandler.fileSeacher());
+                tmplist = fileHandler.fileSeacher();
+    
+                archNoEnList.add(tmplist);
+                
             }
         }
-        
         //FileJFrame.setMissingString(archNoEnList);
+        jPro.setFileThread(Boolean.FALSE);
         jPro.dispose();
     }
 
-      public void start() {
+    public void start() {
         fileThread.start();
     }
       

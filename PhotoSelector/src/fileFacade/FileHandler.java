@@ -50,7 +50,7 @@ public class FileHandler {
     
     //String stringFile, String originFolderPath, String destFolderPath
     public String fileSeacher() {
-
+        ProgressBarFrame jPro = ProgressBarFrame.getInstance();
         String returnString = "";
         File dirS = new File(this.origenFolderPath);
         File[] files = dirS.listFiles(new MyFileFilter(this.searchFileName));
@@ -59,10 +59,11 @@ public class FileHandler {
 
         } else {
             for (File f : files) {
-                ProgressBarFrame jPro = ProgressBarFrame.getInstance();
+                
                 jPro.setFileName(f.getName());
                 jPro.setActualValue(1);
                 fileCopyer(f.getAbsolutePath(), f.getName());
+                
             }
         }
         return returnString;
